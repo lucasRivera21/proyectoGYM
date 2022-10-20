@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hola {{ name }}, eres un SUPER usuario</h1>
+    {% for value in datos %}
+    <div id="usuario{{loop.index}}">{{value[0]}} {{value[1]}} {{value[2]}} {{value[3]}} {{value[4]}}</div>
+    <input id="eliminar{{loop.index}}" value="Eliminar" name="CLICK" type="submit">
+    <button id="editar{{loop.index}}"><a href="/editar" name="CLIIIIICK">Editar</a></button>
+    {% endfor %}
+</body>
+</html>
