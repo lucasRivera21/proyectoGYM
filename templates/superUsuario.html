@@ -10,8 +10,17 @@
     <h1>Hola {{ name }}, eres un SUPER usuario</h1>
     {% for value in datos %}
     <div id="usuario{{loop.index}}">{{value[0]}} {{value[1]}} {{value[2]}} {{value[3]}} {{value[4]}}</div>
-    <input id="eliminar{{loop.index}}" value="Eliminar" name="CLICK" type="submit">
-    <button id="editar{{loop.index}}"><a href="/editar" name="CLIIIIICK">Editar</a></button>
+    <form method="POST" action="/borrar">
+        <input type="text" name="btn-borrar" value="{{loop.index}}" style="display: none;">
+        <input id="eliminar{{loop.index}}" value="Eliminar" type="submit">
+    </form>
+<!--
+    <form method="POST" action="/editar">
+        <input type="text" name="btn-editar" value="{{loop.index}}" style="display: none;">
+        <input id="editar{{loop.index}}" value="Editar" type="submit">
+-->
     {% endfor %}
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></scipt>
+    <script src="./main.js"></script>
 </body>
 </html>

@@ -63,13 +63,25 @@ def super():
     cur = mysql.get_db().cursor()
     query = "SELECT nombre, apellido, ID, edad, correo FROM tabla_prueba WHERE admin = '0'"
     cur.execute(query)
+    global datos
     datos = cur.fetchall()
     cur.close()
-    print(datos)
     return render_template('superUsuario.html', name=row[2], datos=datos)
-@app.route('/editar')
+
+@app.route('/borrar', methods=['POST'])
+def borrar():
+    if request.method == 'POST':
+        DU = int(request.form['btn-borrar'])-1
+        cur = mysql.get_db().cursor()
+        query = "DELETE FROM tabla_prueba WHERE ID = '{}'".format(datos[DU][2])
+        cur.execute(query)
+        cur.close()
+        return redirect(url_for('super'))
+
+@app.route('/editar', methods=['POST'])
 def editar():
-    print("ME HICISTE CLICK")
+    if request.method == 'POST':
+        print(request.form['btn-editar'])
     return redirect(url_for('super'))
 
 @app.route('/registro-super', methods=['POST', 'GET'])
